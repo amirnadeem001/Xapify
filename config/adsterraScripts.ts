@@ -12,7 +12,7 @@ export type BannerScriptConfig = {
 export type NativeScriptConfig = {
   kind: "native";
   invokeUrl: string;
-  containerPrefix: string;
+  containerId: string;
 };
 
 export const BANNER_728x90: BannerScriptConfig = {
@@ -59,7 +59,7 @@ export const NATIVE_BANNER: NativeScriptConfig = {
   kind: "native",
   invokeUrl:
     "https://pl29433215.profitablecpmratenetwork.com/2888bf2ec32e4dd287370e8a0f3478e9/invoke.js",
-  containerPrefix: "container-2888bf2ec32e4dd287370e8a0f3478e9",
+  containerId: "container-2888bf2ec32e4dd287370e8a0f3478e9",
 };
 
 export const POPUNDER_SCRIPT_URL =

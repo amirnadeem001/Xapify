@@ -119,21 +119,7 @@ export function Header() {
           apify.
         </Link>
 
-        <nav
-          className="ml-4 hidden flex-1 items-center justify-center gap-1 md:ml-6 md:flex"
-          aria-label="Primary"
-        >
-          {navLinks.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="flex items-center rounded-md px-3 py-2 text-sm font-medium text-zinc-700 transition hover:bg-zinc-50 hover:text-blue-600 dark:text-zinc-200 dark:hover:bg-zinc-900 dark:hover:text-blue-400"
-            >
-              {item.label}
-              {item.hasChevron ? <ChevronDown /> : null}
-            </Link>
-          ))}
-        </nav>
+
 
         <div className="ml-auto flex items-center gap-1 md:ml-0">
           <button
@@ -156,23 +142,7 @@ export function Header() {
         </div>
       </div>
 
-      <div
-        id="mobile-nav"
-        className={`border-t border-zinc-200 dark:border-zinc-800 md:hidden ${mobileOpen ? "block" : "hidden"}`}
-      >
-        <nav className="mx-auto flex max-w-7xl flex-col px-4 py-3" aria-label="Mobile">
-          {navLinks.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="rounded-md px-2 py-2 text-sm font-medium text-zinc-800 transition hover:bg-zinc-50 hover:text-blue-600 dark:text-zinc-100 dark:hover:bg-zinc-900 dark:hover:text-blue-400"
-              onClick={() => setMobileOpen(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-      </div>
+
     </header>
   );
 }

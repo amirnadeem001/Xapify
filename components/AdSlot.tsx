@@ -55,7 +55,7 @@ export function AdSlot({ id, type, className = "", unit }: AdSlotProps) {
       className={`${visibilityClasses(type)} mx-auto w-full items-center justify-center ${className}`.trim()}
     >
       <div className={`w-full ${sizeClasses(type)}`}>
-        <AdsterraDisplay placementId={id} unitKey={unitKey} />
+        <AdsterraDisplay placementId={id} unitKey={unitKey} slotType={type} />
       </div>
     </aside>
   );
