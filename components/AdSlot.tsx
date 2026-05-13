@@ -1,17 +1,17 @@
+import { AdsterraDisplay } from "@/components/AdsterraDisplay";
+import {
+  resolveAdsterraUnit,
+  resolveAdsterraUnitKey,
+  type AdsterraUnitKey,
+} from "@/config/adsterra";
+
 type AdSlotType = "banner" | "sidebar" | "native" | "footer" | "mobile";
 
 type AdSlotProps = {
   id: string;
   type: AdSlotType;
   className?: string;
-};
-
-const SLOT_CONFIG: Record<AdSlotType, { label: string }> = {
-  banner: { label: "Adsterra Ad - 728x90" },
-  footer: { label: "Adsterra Ad - 728x90" },
-  sidebar: { label: "Adsterra Ad - 300x250" },
-  native: { label: "Adsterra Ad - 300x250" },
-  mobile: { label: "Adsterra Ad - 320x50" },
+  unit?: AdsterraUnitKey;
 };
 
 function visibilityClasses(type: AdSlotType): string {
@@ -36,33 +36,26 @@ function sizeClasses(type: AdSlotType): string {
     case "sidebar":
       return "aspect-[300/250] w-full max-w-[300px]";
     case "native":
-      return "mx-auto aspect-[300/250] w-full max-w-full md:max-w-[300px]";
+      return "mx-auto w-full max-w-full md:max-w-[300px]";
     default:
       return "";
   }
 }
 
-export function AdSlot({ id, type, className = "" }: AdSlotProps) {
-  const { label } = SLOT_CONFIG[type];
+export function AdSlot({ id, type, className = "", unit }: AdSlotProps) {
+  const adUnit = resolveAdsterraUnit(id, type, unit);
+  const unitKey = resolveAdsterraUnitKey(id, type, unit);
 
   return (
     <aside
       id={id}
       data-ad-slot={type}
+      data-adsterra-unit={adUnit.name}
       aria-label="Advertisement"
       className={`${visibilityClasses(type)} mx-auto w-full items-center justify-center ${className}`.trim()}
     >
-      {/*
-        Paste your Adsterra script / ad unit code here.
-        Replace the placeholder div below with the snippet from your Adsterra dashboard.
-        Keep the outer <aside> wrapper so layout and responsive visibility stay intact.
-      */}
-      <div
-        className={`flex items-center justify-center rounded-lg border border-dashed border-zinc-300/60 bg-zinc-100/50 px-3 text-center dark:border-zinc-700/80 dark:bg-zinc-900/40 ${sizeClasses(type)}`}
-      >
-        <span className="text-xs font-medium tracking-wide text-zinc-500 dark:text-zinc-400">
-          {label}
-        </span>
+      <div className={`w-full ${sizeClasses(type)}`}>
+        <AdsterraDisplay placementId={id} unitKey={unitKey} />
       </div>
     </aside>
   );

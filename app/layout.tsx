@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { AdsterraGlobal } from "@/components/AdsterraGlobal";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
@@ -27,6 +28,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full font-sans antialiased">
+        <AdsterraGlobal />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
